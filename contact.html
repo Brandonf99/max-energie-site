@@ -8,6 +8,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .contact-form{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    margin-top:26px;
+  }
+  .contact-form .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:480px){ .contact-form .row2{ grid-template-columns:1fr; } }
+  .contact-form .field{ margin-bottom:14px; }
+  .contact-form label{ display:block; font-size:13.5px; font-weight:600; margin-bottom:6px; }
+  .contact-form input, .contact-form textarea{
+    width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:9px;
+    font-family:inherit; font-size:15px; color:var(--ink); background:#fff;
+  }
+  .contact-form input:focus, .contact-form textarea:focus{ outline:none; border-color:var(--coral); }
+  .contact-form textarea{ min-height:120px; resize:vertical; }
+  .contact-form button{
+    background:var(--ink); color:#fff; border:none; border-radius:10px; padding:14px 26px;
+    font-weight:700; font-size:15px; cursor:pointer;
+  }
+  .contact-form button:hover{ background:var(--coral); }
+  .contact-form button:disabled{ background:var(--muted); cursor:not-allowed; }
+  #contactStatus{ margin-top:12px; font-size:14px; display:none; }
+  #contactStatus.ok{ display:block; color:#1E7A4C; }
+  #contactStatus.err{ display:block; color:#B3261E; }
+</style>
 </head>
 <body>
 
@@ -17,10 +45,12 @@
     <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
     <nav class="links">
       <a href="index.html">Accueil</a>
-      <a href="info.html">Info</a>
-      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="info.html">Information</a>
+      <a href="inscription-max-energie.html" class="nav-cta">Inscription</a>
+      <a href="horaire.html">Horaire</a>
+      <a href="https://xpressobaravetements.com/collections/max-energie" target="_blank" rel="noopener">Boutique</a>
+      <a href="medias.html">M&eacute;dias</a>
       <a href="contact.html" class="active">Contact</a>
-      <a href="inscription-max-energie.html" class="nav-cta">S'inscrire</a>
     </nav>
   </div>
 </header>
@@ -46,22 +76,81 @@
         <a href="tel:8193607274">819-360-7274</a>
       </div>
       <div class="contact-item">
-        <p class="eyebrow">Localisation</p>
-        <span style="font-weight:700;">Gatineau, QC</span>
-        <p class="placeholder-note">📝 Ajoutez ici l'adresse exacte du lieu des cours.</p>
+        <p class="eyebrow">Adresse</p>
+        <span style="font-weight:700;">Centre Slush Puppie</span>
+        <p class="placeholder-note">📝 Ajoutez ici l'adresse municipale complète du Centre Slush Puppie pour que la carte pointe au bon endroit.</p>
       </div>
     </div>
 
-    <div class="map-box">
-      <iframe
-        src="https://www.google.com/maps?q=Gatineau,QC&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Carte — Gatineau, QC">
-      </iframe>
+    <div>
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="row2">
+          <div class="field">
+            <label for="firstName">Prénom *</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Nom *</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="ceEmail">Email *</label>
+          <input type="email" id="ceEmail" name="email" required>
+        </div>
+        <div class="field">
+          <label for="ceMessage">Message *</label>
+          <textarea id="ceMessage" name="message" required></textarea>
+        </div>
+        <button type="submit" id="contactSubmit">Envoyer</button>
+        <div id="contactStatus" role="status"></div>
+      </form>
     </div>
   </div>
+
+  <div class="map-box" style="margin-top:26px;">
+    <iframe
+      src="https://www.google.com/maps?q=Centre+Slush+Puppie,Gatineau,QC&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Carte — Centre Slush Puppie, Gatineau, QC">
+    </iframe>
+  </div>
 </section>
+
+<script>
+  // Same free, no-backend approach as the registration form.
+  const RECIPIENT_EMAIL_CONTACT = "maxenergie03@gmail.com"; // <-- change if you want a different inbox
+  const cForm = document.getElementById('contactForm');
+  const cBtn = document.getElementById('contactSubmit');
+  const cStatus = document.getElementById('contactStatus');
+
+  cForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!cForm.checkValidity()) { cForm.reportValidity(); return; }
+    const data = Object.fromEntries(new FormData(cForm).entries());
+    cBtn.disabled = true;
+    cBtn.textContent = 'Envoi...';
+    cStatus.className = '';
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL_CONTACT}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: 'Nouveau message — site Max Énergie', ...data })
+      });
+      if (!res.ok) throw new Error('network');
+      cStatus.textContent = 'Merci pour votre message ! Nous vous répondrons rapidement.';
+      cStatus.className = 'ok';
+      cForm.reset();
+    } catch (err) {
+      cStatus.textContent = "Une erreur est survenue. Veuillez réessayer ou nous écrire directement par courriel.";
+      cStatus.className = 'err';
+    } finally {
+      cBtn.disabled = false;
+      cBtn.textContent = 'Envoyer';
+    }
+  });
+</script>
 
 <footer class="site">
   <div class="container footer-inner">

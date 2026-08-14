@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Médias — Max Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .media-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:28px;
+  }
+  @media (max-width:760px){ .media-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:480px){ .media-grid{ grid-template-columns:1fr; } }
+  .media-placeholder{
+    aspect-ratio:4/3;
+    border:1.5px dashed var(--coral);
+    border-radius:var(--radius);
+    background:#FFF6EF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#B3401F;
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    padding:16px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html">Accueil</a>
+      <a href="info.html">Information</a>
+      <a href="inscription-max-energie.html" class="nav-cta">Inscription</a>
+      <a href="horaire.html">Horaire</a>
+      <a href="https://xpressobaravetements.com/collections/max-energie" target="_blank" rel="noopener">Boutique</a>
+      <a href="medias.html" class="active">Médias</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:10px;">
+  <div class="container">
+    <p class="eyebrow">En photos et vidéos</p>
+    <h1>Médias</h1>
+    <p class="sub">Un aperçu de l'ambiance Max Énergie — cours, événements et moments d'équipe.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px;">
+  <div class="container">
+    <div class="media-grid">
+      <div class="media-placeholder">📝 Photo à venir</div>
+      <div class="media-placeholder">📝 Photo à venir</div>
+      <div class="media-placeholder">📝 Photo à venir</div>
+      <div class="media-placeholder">📝 Photo à venir</div>
+      <div class="media-placeholder">📝 Photo à venir</div>
+      <div class="media-placeholder">📝 Photo à venir</div>
+    </div>
+    <p class="placeholder-note" style="margin-top:24px;">📝 Envoyez vos photos/vidéos et je les intégrerai ici, dans une grille comme celle-ci.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Information</a>
+      <a href="horaire.html">Horaire</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">Inscription</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -256,10 +256,12 @@
     <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
     <nav class="links">
       <a href="index.html">Accueil</a>
-      <a href="info.html">Info</a>
-      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="info.html">Information</a>
+      <a href="inscription-max-energie.html" class="nav-cta active">Inscription</a>
+      <a href="horaire.html">Horaire</a>
+      <a href="https://xpressobaravetements.com/collections/max-energie" target="_blank" rel="noopener">Boutique</a>
+      <a href="medias.html">M&eacute;dias</a>
       <a href="contact.html">Contact</a>
-      <a href="inscription-max-energie.html" class="nav-cta active">S'inscrire</a>
     </nav>
   </div>
 </header>
@@ -274,7 +276,7 @@
 
   <p class="eyebrow">Max Énergie · Gatineau</p>
   <h1>Inscription aux cours</h1>
-  <p class="sub">Remplissez le formulaire pour réserver votre carte de cours. Le paiement se fait séparément avec Square — vous recevrez les détails par courriel.</p>
+  <p class="sub">Remplissez le formulaire pour réserver votre carte de cours (15 à 50 cours, sans date d'expiration, partageable entre famille et amis). Le paiement se fait séparément avec Square — vous recevrez les détails par courriel.</p>
 
   <form id="inscriptionForm" novalidate>
 
@@ -298,27 +300,19 @@
 
     <fieldset>
       <legend>Choix de la carte de cours <span class="required">*</span></legend>
-      <div class="cards" id="cardGroup">
-        <label class="card-opt">
-          <input type="radio" name="cardType" value="10 cours" required>
-          <span class="count">10</span>
-          <span class="label">cours</span>
-        </label>
-        <label class="card-opt">
-          <input type="radio" name="cardType" value="15 cours">
-          <span class="count">15</span>
-          <span class="label">cours</span>
-        </label>
-        <label class="card-opt">
-          <input type="radio" name="cardType" value="20 cours">
-          <span class="count">20</span>
-          <span class="label">cours</span>
-        </label>
-        <label class="card-opt">
-          <input type="radio" name="cardType" value="30 cours">
-          <span class="count">30</span>
-          <span class="label">cours</span>
-        </label>
+      <div class="field">
+        <label for="cardType">Nombre de cours souhaité (15 à 50)</label>
+        <select id="cardType" name="cardType" required>
+          <option value="" disabled selected>Sélectionner...</option>
+          <option value="15 cours">15 cours</option>
+          <option value="20 cours">20 cours</option>
+          <option value="25 cours">25 cours</option>
+          <option value="30 cours">30 cours</option>
+          <option value="40 cours">40 cours</option>
+          <option value="50 cours">50 cours</option>
+          <option value="Sur mesure">Autre / sur mesure</option>
+        </select>
+        <p class="hint">Aucune date d'expiration — la carte est partageable entre famille et amis.</p>
       </div>
     </fieldset>
 
@@ -381,17 +375,20 @@
 //    This uses FormSubmit.co, a free service that emails you form data
 //    with NO backend/server needed — perfect for a static site.
 //    First real submission will ask you to confirm your email once.
-const RECIPIENT_EMAIL = "your-email@max-energie.ca"; // <-- change this
+const RECIPIENT_EMAIL = "maxenergie03@gmail.com"; // <-- change if you want a different inbox
 
 // 2) Once you have Square Payment Links set up (one per card size),
 //    paste them here. After a successful submission, the visitor will
 //    be redirected to the matching Square payment page.
 //    Leave a value as "" to skip redirecting for that card type.
 const SQUARE_LINKS = {
-  "10 cours": "",
   "15 cours": "",
   "20 cours": "",
-  "30 cours": ""
+  "25 cours": "",
+  "30 cours": "",
+  "40 cours": "",
+  "50 cours": "",
+  "Sur mesure": ""
 };
 
 /* ========================================================================= */
@@ -406,14 +403,6 @@ const statusEl = document.getElementById('status');
 classChoice.addEventListener('change', () => {
   const isParentChild = classChoice.value === 'Parent-enfant';
   childFields.classList.toggle('show', isParentChild);
-});
-
-// Highlight selected card pill
-document.querySelectorAll('#cardGroup input[type="radio"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    document.querySelectorAll('.card-opt').forEach(el => el.classList.remove('checked'));
-    radio.closest('.card-opt').classList.add('checked');
-  });
 });
 
 function showStatus(message, type) {
