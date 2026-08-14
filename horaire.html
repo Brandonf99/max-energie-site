@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horaire &amp; Prix — Max Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html">Accueil</a>
+      <a href="info.html">Info</a>
+      <a href="horaire.html" class="active">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html" class="nav-cta">S'inscrire</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:10px;">
+  <div class="container">
+    <p class="eyebrow">Planifiez votre semaine</p>
+    <h1>Horaire &amp; Prix</h1>
+    <p class="sub">Les cours reprennent en septembre. Consultez l'horaire ci-dessous et choisissez votre carte de cours.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px;">
+  <div class="container">
+    <h2>Horaire hebdomadaire</h2>
+    <p class="placeholder-note" style="margin-bottom:6px;">📝 Remplacez les heures ci-dessous par votre horaire réel.</p>
+    <table class="schedule">
+      <thead>
+        <tr><th>Jour</th><th>Cours</th><th>Heure</th><th>Lieu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Lundi</td><td>Zumba</td><td>18h00 – 19h00</td><td>Gatineau</td></tr>
+        <tr><td>Mardi</td><td>Boxe</td><td>18h30 – 19h30</td><td>Gatineau</td></tr>
+        <tr><td>Mercredi</td><td>Fitness Parent-Enfant</td><td>17h30 – 18h15</td><td>Gatineau</td></tr>
+        <tr><td>Jeudi</td><td>Zumba</td><td>18h00 – 19h00</td><td>Gatineau</td></tr>
+        <tr><td>Samedi</td><td>Boxe</td><td>10h00 – 11h00</td><td>Gatineau</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>Cartes de cours</h2>
+    <p class="sub">Choisissez la carte qui correspond à votre rythme. Le paiement se fait par Square lors de l'inscription.</p>
+    <p class="placeholder-note" style="margin-bottom:0;">📝 Remplacez les prix ci-dessous par vos tarifs réels.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <span class="count">10</span>
+        <span class="label">cours</span>
+        <span class="price">[Tarif]</span>
+      </div>
+      <div class="price-card">
+        <span class="count">15</span>
+        <span class="label">cours</span>
+        <span class="price">[Tarif]</span>
+      </div>
+      <div class="price-card">
+        <span class="count">20</span>
+        <span class="label">cours</span>
+        <span class="price">[Tarif]</span>
+      </div>
+      <div class="price-card">
+        <span class="count">30</span>
+        <span class="label">cours</span>
+        <span class="price">[Tarif]</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="inscription-max-energie.html" class="btn btn-primary">Choisir ma carte et m'inscrire</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">S'inscrire</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

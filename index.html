@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Max Énergie — Zumba, Boxe &amp; Parent-Enfant à Gatineau</title>
+<meta name="description" content="Cours de Zumba, Boxe et Fitness Parent-Enfant à Gatineau. Inscrivez-vous à Max Énergie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="banner">Les cours de Zumba, Boxe et Fitness Parent-Enfant reprennent dès <span>septembre</span> !</div>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html" class="active">Accueil</a>
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html" class="nav-cta">S'inscrire</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="pulse" aria-hidden="true" style="max-width:220px;margin-bottom:18px;">
+      <svg viewBox="0 0 400 34" preserveAspectRatio="none">
+        <path d="M0,17 L110,17 L128,4 L146,30 L164,10 L182,24 L200,17 L400,17"/>
+      </svg>
+    </div>
+    <div class="hero-top">
+      <div class="hero-text">
+        <p class="eyebrow">Gatineau, QC</p>
+        <h1>Bougez fort.<br>Bougez ensemble.</h1>
+        <p class="sub">Max Énergie offre des cours de Zumba, Boxe et Fitness Parent-Enfant à Gatineau — une communauté locale qui carbure au mouvement, à la sueur et à la bonne humeur.</p>
+        <div class="btn-row">
+          <a href="inscription-max-energie.html" class="btn btn-primary">S'inscrire à un cours</a>
+          <a href="horaire.html" class="btn btn-secondary">Voir l'horaire et les prix</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <span class="center-mark">MAX</span>
+        <div class="badge b1">Zumba 🔥</div>
+        <div class="badge b2">Boxe 🥊</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="classes">
+  <div class="container">
+    <p class="eyebrow">Nos cours</p>
+    <h2>Trois façons de bouger</h2>
+    <p class="sub">Que vous veniez seul, en famille ou entre amis, il y a un cours pour vous.</p>
+
+    <div class="class-grid">
+      <div class="class-card">
+        <span class="tag zumba">Zumba</span>
+        <h3>Zumba</h3>
+        <p>Danse, cardio et musique entraînante dans une ambiance festive. Aucune expérience requise — seulement l'envie de bouger.</p>
+      </div>
+      <div class="class-card">
+        <span class="tag boxe">Boxe</span>
+        <h3>Boxe</h3>
+        <p>Un entraînement complet qui combine technique, cardio et défoulement. Parfait pour se dépasser et évacuer le stress.</p>
+      </div>
+      <div class="class-card">
+        <span class="tag parent">Parent-Enfant</span>
+        <h3>Fitness Parent-Enfant</h3>
+        <p>Un moment actif à partager avec votre enfant : jeux, mouvement et rires garantis, pour petits et grands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">Pourquoi Max Énergie</p>
+      <h2>Une communauté avant tout</h2>
+      <p class="sub" style="margin-bottom:0;">
+        Max Énergie, c'est plus qu'une salle de cours — c'est un groupe de gens de Gatineau qui se motivent
+        mutuellement, semaine après semaine. Nos cours sont pensés pour tous les niveaux, dans une ambiance
+        chaleureuse et sans jugement.
+      </p>
+      <p class="placeholder-note">📝 Espace réservé — ajoutez ici votre histoire, celle de l'instructeur, ou une photo de groupe.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Prêt à commencer ?</p>
+      <h2>Réservez votre carte de cours</h2>
+      <p class="sub">Cartes de 10, 15, 20 ou 30 cours disponibles. Choisissez celle qui vous convient et inscrivez-vous en quelques minutes.</p>
+      <a href="inscription-max-energie.html" class="btn btn-primary">S'inscrire maintenant</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">S'inscrire</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info — Max Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html">Accueil</a>
+      <a href="info.html" class="active">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html" class="nav-cta">S'inscrire</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:20px;">
+  <div class="container">
+    <p class="eyebrow">À propos</p>
+    <h1>Nos cours, en détail</h1>
+    <p class="sub">Trois programmes, un seul objectif : bouger avec plaisir, à Gatineau.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <span class="tag zumba" style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;margin-bottom:14px;">Zumba</span>
+        <h2>Zumba</h2>
+        <p class="sub" style="margin-bottom:10px;">
+          Un cours de danse cardio sur des rythmes latins et internationaux. Facile à suivre, intense quand vous
+          le voulez, et surtout — le fun avant tout. Aucune expérience de danse n'est requise.
+        </p>
+        <p class="placeholder-note">📝 Ajoutez ici : niveau requis, durée typique du cours, ce qu'il faut apporter.</p>
+      </div>
+      <div>
+        <span class="tag boxe" style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;margin-bottom:14px;">Boxe</span>
+        <h2>Boxe</h2>
+        <p class="sub" style="margin-bottom:10px;">
+          Technique de boxe, combinaisons et cardio intense dans un cadre encadré. Idéal pour se défouler,
+          progresser techniquement et améliorer sa condition physique.
+        </p>
+        <p class="placeholder-note">📝 Ajoutez ici : équipement fourni ou requis (gants, bandages), niveau requis.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;">
+      <span class="tag parent" style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;margin-bottom:14px;">Parent-Enfant</span>
+      <h2>Fitness Parent-Enfant</h2>
+      <p class="sub" style="margin-bottom:10px;max-width:70ch;">
+        Un cours conçu pour bouger en famille : jeux actifs, parcours et exercices adaptés pour que parents et
+        enfants s'entraînent — et rient — ensemble.
+      </p>
+      <p class="placeholder-note">📝 Ajoutez ici : tranche d'âge des enfants acceptée, ratio parent/enfant.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <p class="eyebrow">L'équipe</p>
+    <h2>Qui vous entraîne</h2>
+    <p class="sub">Présentez ici votre ou vos instructeurs : formation, expérience, approche pédagogique.</p>
+    <p class="placeholder-note">📝 Espace réservé pour la ou les bios d'instructeurs, avec photo.</p>
+  </div>
+</section>
+
+<section class="section" style="text-align:center;padding-top:40px;padding-bottom:60px;">
+  <div class="container">
+    <h2>Prêt à essayer un cours ?</h2>
+    <a href="inscription-max-energie.html" class="btn btn-primary">S'inscrire maintenant</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">S'inscrire</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

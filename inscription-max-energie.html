@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription — Max Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  :root{
+    --ink:#1C1B29;
+    --base:#FFFBF5;
+    --coral:#FF5A3C;
+    --teal:#1F9E92;
+    --muted:#8A8794;
+    --line:#E9E3D8;
+    --card-bg:#FFFFFF;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+
+  .wrap{
+    width:100%;
+    max-width:560px;
+    margin:0 auto;
+  }
+
+  .pulse{
+    height:34px;
+    margin-bottom:18px;
+    overflow:hidden;
+  }
+  .pulse svg{ width:100%; height:100%; display:block; }
+  .pulse path{
+    fill:none;
+    stroke:var(--coral);
+    stroke-width:2.5;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:340;
+    stroke-dashoffset:340;
+    animation:draw 2.2s ease-out forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion: reduce){
+    .pulse path{ animation:none; stroke-dashoffset:0; }
+  }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:700;
+    margin:0 0 6px;
+  }
+
+  h1{
+    font-family:'Archivo Black',sans-serif;
+    font-weight:400;
+    font-size:clamp(28px,6vw,38px);
+    line-height:1.05;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+
+  .sub{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.5;
+    margin:0 0 28px;
+    max-width:46ch;
+  }
+
+  form{
+    background:var(--card-bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+  }
+
+  fieldset{
+    border:none;
+    margin:0 0 24px;
+    padding:0;
+  }
+  fieldset:last-of-type{ margin-bottom:0; }
+
+  legend{
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:700;
+    padding:0 0 12px;
+    width:100%;
+  }
+
+  .field{ margin-bottom:16px; }
+  .field:last-child{ margin-bottom:0; }
+
+  label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select{
+    width:100%;
+    padding:11px 13px;
+    border:1.5px solid var(--line);
+    border-radius:9px;
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+    background:#fff;
+    transition:border-color .15s ease;
+  }
+  input:focus, select:focus{
+    outline:none;
+    border-color:var(--coral);
+  }
+  input:focus-visible, select:focus-visible{
+    outline:2px solid var(--coral);
+    outline-offset:1px;
+  }
+
+  .row2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  @media (max-width:480px){
+    .row2{ grid-template-columns:1fr; }
+  }
+
+  /* card-type pills */
+  .cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .card-opt{
+    position:relative;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:12px 12px 12px 40px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .card-opt:hover{ border-color:var(--coral); }
+  .card-opt input{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    accent-color:var(--coral);
+    width:16px;
+    height:16px;
+    margin:0;
+  }
+  .card-opt.checked{
+    border-color:var(--coral);
+    background:#FFF3EF;
+  }
+  .card-opt .count{
+    display:block;
+    font-family:'Archivo Black',sans-serif;
+    font-weight:400;
+    font-size:18px;
+    color:var(--coral);
+  }
+  .card-opt .label{
+    display:block;
+    font-size:12px;
+    font-weight:500;
+    color:var(--muted);
+    margin-top:1px;
+  }
+
+  #childFields{
+    display:none;
+    border-top:1px dashed var(--line);
+    margin-top:18px;
+    padding-top:18px;
+  }
+  #childFields.show{ display:block; }
+
+  .hint{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:6px;
+    line-height:1.4;
+  }
+
+  button[type="submit"]{
+    width:100%;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:15px;
+    font-size:15.5px;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+    transition:background .15s ease, transform .1s ease;
+    margin-top:6px;
+  }
+  button[type="submit"]:hover{ background:var(--coral); }
+  button[type="submit"]:active{ transform:scale(.99); }
+  button[type="submit"]:disabled{
+    background:var(--muted);
+    cursor:not-allowed;
+  }
+
+  #status{
+    margin-top:14px;
+    padding:12px 14px;
+    border-radius:9px;
+    font-size:14px;
+    line-height:1.5;
+    display:none;
+  }
+  #status.ok{
+    display:block;
+    background:#EAF9F0;
+    color:#1E7A4C;
+    border:1px solid #BFE9D0;
+  }
+  #status.err{
+    display:block;
+    background:#FDECEA;
+    color:#B3261E;
+    border:1px solid #F5C6C2;
+  }
+
+  .required{ color:var(--coral); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html">Accueil</a>
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html" class="nav-cta active">S'inscrire</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" style="padding:44px 16px;">
+
+  <div class="pulse" aria-hidden="true">
+    <svg viewBox="0 0 400 34" preserveAspectRatio="none">
+      <path d="M0,17 L110,17 L128,4 L146,30 L164,10 L182,24 L200,17 L400,17"/>
+    </svg>
+  </div>
+
+  <p class="eyebrow">Max Énergie · Gatineau</p>
+  <h1>Inscription aux cours</h1>
+  <p class="sub">Remplissez le formulaire pour réserver votre carte de cours. Le paiement se fait séparément avec Square — vous recevrez les détails par courriel.</p>
+
+  <form id="inscriptionForm" novalidate>
+
+    <fieldset>
+      <legend>Vos coordonnées</legend>
+      <div class="field">
+        <label for="parentName">Nom complet <span class="required">*</span></label>
+        <input type="text" id="parentName" name="parentName" required autocomplete="name">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="email">Courriel <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">Téléphone <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Choix de la carte de cours <span class="required">*</span></legend>
+      <div class="cards" id="cardGroup">
+        <label class="card-opt">
+          <input type="radio" name="cardType" value="10 cours" required>
+          <span class="count">10</span>
+          <span class="label">cours</span>
+        </label>
+        <label class="card-opt">
+          <input type="radio" name="cardType" value="15 cours">
+          <span class="count">15</span>
+          <span class="label">cours</span>
+        </label>
+        <label class="card-opt">
+          <input type="radio" name="cardType" value="20 cours">
+          <span class="count">20</span>
+          <span class="label">cours</span>
+        </label>
+        <label class="card-opt">
+          <input type="radio" name="cardType" value="30 cours">
+          <span class="count">30</span>
+          <span class="label">cours</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cours souhaité</legend>
+      <div class="field">
+        <label for="classChoice">Type de cours <span class="required">*</span></label>
+        <select id="classChoice" name="classChoice" required>
+          <option value="" disabled selected>Sélectionner...</option>
+          <option value="Zumba">Zumba</option>
+          <option value="Boxe">Boxe</option>
+          <option value="Parent-enfant">Parent-enfant</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="schedule">Horaire préféré</label>
+        <input type="text" id="schedule" name="schedule" placeholder="ex. Mardi 18h30">
+      </div>
+
+      <div id="childFields">
+        <p class="hint" style="margin:0 0 12px;">Cours parent-enfant sélectionné — merci d'ajouter les infos de l'enfant.</p>
+        <div class="row2">
+          <div class="field">
+            <label for="childName">Nom de l'enfant</label>
+            <input type="text" id="childName" name="childName">
+          </div>
+          <div class="field">
+            <label for="childAge">Âge de l'enfant</label>
+            <input type="number" id="childAge" name="childAge" min="0" max="17">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" id="submitBtn">Envoyer l'inscription</button>
+    <div id="status" role="status"></div>
+  </form>
+</div>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">S'inscrire</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+/* =========================================================================
+   CONFIG — edit these two things when you're ready
+   ========================================================================= */
+
+// 1) Where the form submissions get emailed.
+//    This uses FormSubmit.co, a free service that emails you form data
+//    with NO backend/server needed — perfect for a static site.
+//    First real submission will ask you to confirm your email once.
+const RECIPIENT_EMAIL = "your-email@max-energie.ca"; // <-- change this
+
+// 2) Once you have Square Payment Links set up (one per card size),
+//    paste them here. After a successful submission, the visitor will
+//    be redirected to the matching Square payment page.
+//    Leave a value as "" to skip redirecting for that card type.
+const SQUARE_LINKS = {
+  "10 cours": "",
+  "15 cours": "",
+  "20 cours": "",
+  "30 cours": ""
+};
+
+/* ========================================================================= */
+
+const form = document.getElementById('inscriptionForm');
+const classChoice = document.getElementById('classChoice');
+const childFields = document.getElementById('childFields');
+const submitBtn = document.getElementById('submitBtn');
+const statusEl = document.getElementById('status');
+
+// Show/hide child fields based on class type
+classChoice.addEventListener('change', () => {
+  const isParentChild = classChoice.value === 'Parent-enfant';
+  childFields.classList.toggle('show', isParentChild);
+});
+
+// Highlight selected card pill
+document.querySelectorAll('#cardGroup input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('.card-opt').forEach(el => el.classList.remove('checked'));
+    radio.closest('.card-opt').classList.add('checked');
+  });
+});
+
+function showStatus(message, type) {
+  statusEl.textContent = message;
+  statusEl.className = type; // 'ok' or 'err'
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  showStatus('', '');
+  statusEl.className = '';
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Envoi en cours...';
+
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Nouvelle inscription — ${data.cardType || ''} — ${data.classChoice || ''}`,
+        ...data
+      })
+    });
+
+    if (!response.ok) throw new Error('network');
+
+    const redirectUrl = SQUARE_LINKS[data.cardType];
+    if (redirectUrl) {
+      showStatus('Merci! Redirection vers le paiement Square...', 'ok');
+      setTimeout(() => { window.location.href = redirectUrl; }, 1200);
+    } else {
+      showStatus('Merci! Votre inscription a été envoyée. Nous vous contacterons pour le paiement.', 'ok');
+      form.reset();
+      childFields.classList.remove('show');
+      document.querySelectorAll('.card-opt').forEach(el => el.classList.remove('checked'));
+    }
+  } catch (err) {
+    showStatus("Une erreur est survenue. Veuillez réessayer ou nous contacter directement.", 'err');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Envoyer l'inscription";
+  }
+});
+</script>
+
+</body>
+</html>

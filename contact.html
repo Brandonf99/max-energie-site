@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Max Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav.links').classList.toggle('open')">Menu</button>
+    <nav class="links">
+      <a href="index.html">Accueil</a>
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="inscription-max-energie.html" class="nav-cta">S'inscrire</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:10px;">
+  <div class="container">
+    <p class="eyebrow">On se parle</p>
+    <h1>Contactez-nous</h1>
+    <p class="sub">Une question sur les cours, l'horaire ou l'inscription ? Écrivez-nous ou appelez.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:10px;">
+  <div class="container contact-grid">
+    <div>
+      <div class="contact-item">
+        <p class="eyebrow">Courriel</p>
+        <a href="mailto:maxenergie03@gmail.com">maxenergie03@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <p class="eyebrow">Téléphone</p>
+        <a href="tel:8736554713">873-655-4713</a><br>
+        <a href="tel:8193607274">819-360-7274</a>
+      </div>
+      <div class="contact-item">
+        <p class="eyebrow">Localisation</p>
+        <span style="font-weight:700;">Gatineau, QC</span>
+        <p class="placeholder-note">📝 Ajoutez ici l'adresse exacte du lieu des cours.</p>
+      </div>
+    </div>
+
+    <div class="map-box">
+      <iframe
+        src="https://www.google.com/maps?q=Gatineau,QC&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Carte — Gatineau, QC">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <a href="index.html" class="brand"><span class="dot"></span>Max Énergie</a>
+    <div class="footer-links">
+      <a href="info.html">Info</a>
+      <a href="horaire.html">Horaire &amp; Prix</a>
+      <a href="contact.html">Contact</a>
+      <a href="inscription-max-energie.html">S'inscrire</a>
+    </div>
+    <span>&copy; <span id="year"></span> Max Énergie · Gatineau, QC</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
