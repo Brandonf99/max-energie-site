@@ -21,19 +21,24 @@
   }
   @media (max-width:760px){ .media-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:480px){ .media-grid{ grid-template-columns:1fr; } }
-  .media-placeholder{
+  .media-grid img{
+    width:100%;
+    height:100%;
     aspect-ratio:4/3;
-    border:1.5px dashed var(--coral);
+    object-fit:cover;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    display:block;
+  }
+  .media-state{
+    border:1.5px dashed var(--line);
     border-radius:var(--radius);
     background:#FFF6EF;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#B3401F;
-    font-size:13px;
-    font-weight:600;
+    padding:24px;
     text-align:center;
-    padding:16px;
+    color:var(--muted);
+    font-size:14px;
+    margin-top:28px;
   }
 </style>
 </head>
@@ -65,16 +70,54 @@
 
 <section class="section" style="padding-top:10px;">
   <div class="container">
-    <div class="media-grid">
-      <div class="media-placeholder">📝 Photo à venir</div>
-      <div class="media-placeholder">📝 Photo à venir</div>
-      <div class="media-placeholder">📝 Photo à venir</div>
-      <div class="media-placeholder">📝 Photo à venir</div>
-      <div class="media-placeholder">📝 Photo à venir</div>
-      <div class="media-placeholder">📝 Photo à venir</div>
-    </div>
+    <div class="media-grid" id="mediaGrid"></div>
+    <div class="media-state" id="mediaState">Chargement des photos...</div>
   </div>
 </section>
+
+<script>
+/* =========================================================================
+   CONFIG
+   ========================================================================= */
+const GITHUB_USER   = "brandonf99";
+const GITHUB_REPO   = "max-energie-site";
+const GITHUB_BRANCH = "main";
+const MEDIA_PATH    = "images/medias"; // <-- drop photos in this folder on GitHub
+/* ========================================================================= */
+
+const IMAGE_EXT = /\.(jpe?g|png|webp|gif)$/i;
+
+async function loadMedia() {
+  const grid = document.getElementById('mediaGrid');
+  const state = document.getElementById('mediaState');
+
+  const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${MEDIA_PATH}?ref=${GITHUB_BRANCH}`;
+
+  try {
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error('fetch-failed');
+    const items = await res.json();
+
+    const images = items.filter(item => item.type === 'file' && IMAGE_EXT.test(item.name));
+
+    if (images.length === 0) {
+      state.textContent = "Aucune photo pour l'instant — revenez bientôt !";
+      return;
+    }
+
+    grid.innerHTML = images.map(img => {
+      const label = img.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+      return `<img src="${img.download_url}" alt="Max Énergie — ${label}" loading="lazy">`;
+    }).join('');
+
+    state.style.display = 'none';
+  } catch (err) {
+    state.textContent = "Impossible de charger les photos pour le moment. Réessayez plus tard.";
+  }
+}
+
+loadMedia();
+</script>
 
 <footer class="site">
   <div class="container footer-inner">
