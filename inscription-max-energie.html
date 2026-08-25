@@ -301,16 +301,14 @@
     <fieldset>
       <legend>Choix de la carte de cours <span class="required">*</span></legend>
       <div class="field">
-        <label for="cardType">Nombre de cours souhaité (15 à 50)</label>
+        <label for="cardType">Carte de cours</label>
         <select id="cardType" name="cardType" required>
           <option value="" disabled selected>Sélectionner...</option>
-          <option value="15 cours">15 cours</option>
-          <option value="20 cours">20 cours</option>
-          <option value="25 cours">25 cours</option>
-          <option value="30 cours">30 cours</option>
-          <option value="40 cours">40 cours</option>
-          <option value="50 cours">50 cours</option>
-          <option value="Sur mesure">Autre / sur mesure</option>
+          <option value="10 cours - 209$">10 cours — 209 $</option>
+          <option value="20 cours - 349$">20 cours — 349 $</option>
+          <option value="30 cours - 449$">30 cours — 449 $</option>
+          <option value="40 cours - 559$">40 cours — 559 $</option>
+          <option value="50 cours - 629$">50 cours — 629 $</option>
         </select>
         <p class="hint">Aucune date d'expiration — la carte est partageable entre famille et amis.</p>
       </div>
@@ -383,13 +381,11 @@ const RECIPIENT_EMAIL = "maxenergie03@gmail.com"; // <-- change if you want a di
 //    be redirected to the matching Square payment page.
 //    Leave a value as "" to skip redirecting for that card type.
 const SQUARE_LINKS = {
-  "15 cours": "",
-  "20 cours": "",
-  "25 cours": "",
-  "30 cours": "",
-  "40 cours": "",
-  "50 cours": "",
-  "Sur mesure": ""
+  "10 cours - 209$": "",
+  "20 cours - 349$": "",
+  "30 cours - 449$": "",
+  "40 cours - 559$": "",
+  "50 cours - 629$": ""
 };
 
 /* ========================================================================= */
